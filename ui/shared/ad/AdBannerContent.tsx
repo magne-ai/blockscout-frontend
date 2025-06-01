@@ -23,6 +23,9 @@ interface Props {
 }
 
 const AdBannerContent = ({ className, isLoading, provider, platform }: Props) => {
+  return (<div></div>);
+
+  /*
   const content = (() => {
     switch (provider) {
       case 'adbutler':
@@ -49,6 +52,7 @@ const AdBannerContent = ({ className, isLoading, provider, platform }: Props) =>
       { content }
     </Skeleton>
   );
+ */
 };
 
 export default chakra(AdBannerContent);
