@@ -1,9 +1,4 @@
-import {
-  Box,
-  Flex,
-  Grid,
-  Tooltip,
-} from '@chakra-ui/react';
+import { Box, Flex, Grid, Tooltip, useColorModeValue } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import React from 'react';
 
@@ -25,6 +20,7 @@ type Props = {
 
 const LatestBlocksItem = ({ block, isLoading }: Props) => {
   const totalReward = getBlockTotalReward(block);
+  const borderColor = useColorModeValue('divider', 'borderColor.50');
   return (
     <Box
       as={ motion.div }
@@ -35,7 +31,8 @@ const LatestBlocksItem = ({ block, isLoading }: Props) => {
       transitionTimingFunction="linear"
       borderRadius="md"
       border="1px solid"
-      borderColor="divider"
+      borderColor={ borderColor }
+      bg={ !isLoading ? 'customBlue.200' : '' }
       p={ 3 }
     >
       <Flex alignItems="center" overflow="hidden" w="100%" mb={ 3 }>
@@ -50,14 +47,21 @@ const LatestBlocksItem = ({ block, isLoading }: Props) => {
         />
         { block.celo?.is_epoch_block && (
           <Tooltip label={ `Finalized epoch #${ block.celo.epoch_number }` }>
-            <IconSvg name="checkered_flag" boxSize={ 5 } p="1px" ml={ 2 } isLoading={ isLoading } flexShrink={ 0 }/>
+            <IconSvg
+              name="checkered_flag"
+              boxSize={ 5 }
+              p="1px"
+              ml={ 2 }
+              isLoading={ isLoading }
+              flexShrink={ 0 }
+            />
           </Tooltip>
         ) }
         <TimeAgoWithTooltip
           timestamp={ block.timestamp }
           enableIncrement={ !isLoading }
           isLoading={ isLoading }
-          color="text_secondary"
+          color="white"
           fontWeight={ 400 }
           display="inline-block"
           fontSize="sm"
@@ -67,18 +71,26 @@ const LatestBlocksItem = ({ block, isLoading }: Props) => {
       </Flex>
       <Grid gridGap={ 2 } templateColumns="auto minmax(0, 1fr)" fontSize="sm">
         <Skeleton isLoaded={ !isLoading }>Txn</Skeleton>
-        <Skeleton isLoaded={ !isLoading } color="text_secondary"><span>{ block.transaction_count }</span></Skeleton>
+        <Skeleton isLoaded={ !isLoading } color="text_secondary">
+          <span>{ block.transaction_count }</span>
+        </Skeleton>
 
-        { !config.features.rollup.isEnabled && !config.UI.views.block.hiddenFields?.total_reward && (
+        { !config.features.rollup.isEnabled &&
+          !config.UI.views.block.hiddenFields?.total_reward && (
           <>
             <Skeleton isLoaded={ !isLoading }>Reward</Skeleton>
-            <Skeleton isLoaded={ !isLoading } color="text_secondary"><span>{ totalReward.dp(10).toFixed() }</span></Skeleton>
+            <Skeleton isLoaded={ !isLoading } color="text_secondary">
+              <span>{ totalReward.dp(10).toFixed() }</span>
+            </Skeleton>
           </>
         ) }
 
-        { !config.features.rollup.isEnabled && !config.UI.views.block.hiddenFields?.miner && (
+        { !config.features.rollup.isEnabled &&
+          !config.UI.views.block.hiddenFields?.miner && (
           <>
-            <Skeleton isLoaded={ !isLoading } textTransform="capitalize">{ getNetworkValidatorTitle() }</Skeleton>
+            <Skeleton isLoaded={ !isLoading } textTransform="capitalize">
+              { getNetworkValidatorTitle() }
+            </Skeleton>
             <AddressEntity
               address={ block.miner }
               isLoading={ isLoading }

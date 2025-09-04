@@ -22,7 +22,7 @@ const CopyToClipboard = ({ text, className, isLoading, onClick, size = 5, type, 
   const [ copied, setCopied ] = useState(false);
   // have to implement controlled tooltip because of the issue - https://github.com/chakra-ui/chakra-ui/issues/7107
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const iconColor = useColorModeValue('gray.400', 'gray.500');
+  const iconColor = useColorModeValue('gray.400', 'customYellow.400');
   const colorProps = colorScheme ? {} : { color: iconColor };
   const iconName = icon || (type === 'link' ? 'link' : 'copy');
 

@@ -25,7 +25,13 @@ export type Props = {
   icon?: IconName;
 };
 
-const Container = ({ href, children }: { href?: Route; children: React.JSX.Element }) => {
+const Container = ({
+  href,
+  children,
+}: {
+  href?: Route;
+  children: React.JSX.Element;
+}) => {
   if (href) {
     return (
       <NextLink href={ href } passHref legacyBehavior>
@@ -52,10 +58,11 @@ const StatsWidget = ({
   period,
   href,
 }: Props) => {
-  const bgColor = useColorModeValue('gray.50', 'whiteAlpha.100');
+  const bgColor = useColorModeValue('gray.50', 'gray.900');
   const skeletonBgColor = useColorModeValue('blackAlpha.50', 'whiteAlpha.50');
   const hintColor = useColorModeValue('gray.600', 'gray.400');
-
+  const svgIconColor = useColorModeValue('white', 'customYellow.400');
+  const lableColor = useColorModeValue('gray.400', 'customYellow.400');
   return (
     <Container href={ !isLoading ? href : undefined }>
       <Flex
@@ -64,12 +71,16 @@ const StatsWidget = ({
         bgColor={ isLoading ? skeletonBgColor : bgColor }
         p={ 3 }
         borderRadius="base"
+        borderWidth="1px"
+        borderColor="borderColor.100"
         justifyContent="space-between"
         columnGap={ 2 }
-        { ...(href && !isLoading ? {
-          as: 'a',
-          href,
-        } : {}) }
+        { ...(href && !isLoading ?
+          {
+            as: 'a',
+            href,
+          } :
+          {}) }
       >
         { icon && (
           <IconSvg
@@ -80,12 +91,14 @@ const StatsWidget = ({
             borderRadius="base"
             display={{ base: 'none', lg: 'block' }}
             flexShrink={ 0 }
+            color={ svgIconColor }
           />
         ) }
         <Box w={{ base: '100%', lg: icon ? 'calc(100% - 48px)' : '100%' }}>
           <Skeleton
             isLoaded={ !isLoading }
-            color="text_secondary"
+            // color="text_secondary"
+            color={ lableColor }
             fontSize="xs"
             lineHeight="16px"
             w="fit-content"
@@ -100,29 +113,45 @@ const StatsWidget = ({
             fontSize="lg"
             lineHeight={ 6 }
           >
-            { valuePrefix && <chakra.span whiteSpace="pre">{ valuePrefix }</chakra.span> }
+            { valuePrefix && (
+              <chakra.span whiteSpace="pre">{ valuePrefix }</chakra.span>
+            ) }
             { typeof value === 'string' ? (
               <TruncatedValue isLoading={ isLoading } value={ value }/>
             ) : (
               value
             ) }
-            { valuePostfix && <chakra.span whiteSpace="pre">{ valuePostfix }</chakra.span> }
+            { valuePostfix && (
+              <chakra.span whiteSpace="pre">{ valuePostfix }</chakra.span>
+            ) }
             { diff && Number(diff) > 0 && (
               <>
                 <Text ml={ 2 } mr={ 1 } color="green.500">
                   +{ diffFormatted || Number(diff).toLocaleString() }
                 </Text>
-                <Text variant="secondary" fontSize="sm">({ diffPeriod })</Text>
+                <Text variant="secondary" fontSize="sm">
+                  ({ diffPeriod })
+                </Text>
               </>
             ) }
-            { period && <Text variant="secondary" fontSize="xs" fontWeight={ 400 } ml={ 1 }>({ period })</Text> }
+            { period && (
+              <Text variant="secondary" fontSize="xs" fontWeight={ 400 } ml={ 1 }>
+                ({ period })
+              </Text>
+            ) }
           </Skeleton>
         </Box>
         { typeof hint === 'string' ? (
-          <Skeleton isLoaded={ !isLoading } alignSelf="center" borderRadius="base">
+          <Skeleton
+            isLoaded={ !isLoading }
+            alignSelf="center"
+            borderRadius="base"
+          >
             <Hint label={ hint } boxSize={ 6 } color={ hintColor }/>
           </Skeleton>
-        ) : hint }
+        ) : (
+          hint
+        ) }
       </Flex>
     </Container>
   );

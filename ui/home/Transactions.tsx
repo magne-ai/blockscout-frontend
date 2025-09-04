@@ -37,7 +37,7 @@ const TransactionsHome = () => {
 
   return (
     <>
-      <Heading as="h4" size="sm" mb={ 3 }>Latest transactions</Heading>
+      <Heading as="h4" size="sm" mb={ 3 } color="customYellow.400">Latest transactions</Heading>
       <LatestTxs/>
     </>
   );

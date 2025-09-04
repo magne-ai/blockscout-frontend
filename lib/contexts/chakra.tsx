@@ -19,9 +19,10 @@ export function ChakraProvider({ cookies, children }: Props) {
   // So we need to use localStorageManager instead of cookieStorageManagerSSR to get the correct default color mode
   const colorModeManager =
     typeof cookies === 'string' && get(NAMES.COLOR_MODE, cookies) ?
-      cookieStorageManagerSSR(typeof document !== 'undefined' ? document.cookie : cookies) :
+      cookieStorageManagerSSR(
+        typeof document !== 'undefined' ? document.cookie : cookies,
+      ) :
       localStorageManager;
-
   return (
     <ChakraProviderDefault colorModeManager={ colorModeManager } theme={ theme }>
       { children }

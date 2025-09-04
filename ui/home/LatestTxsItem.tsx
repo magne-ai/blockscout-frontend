@@ -40,7 +40,7 @@ const LatestTxsItem = ({ tx, isLoading }: Props) => {
       gridGap={ 8 }
       width="100%"
       minW="700px"
-      borderTop="1px solid"
+      // borderTop="1px solid"
       borderColor="divider"
       p={ 4 }
       _last={{ borderBottom: '1px solid', borderColor: 'divider' }}
@@ -68,7 +68,7 @@ const LatestTxsItem = ({ tx, isLoading }: Props) => {
               timestamp={ tx.timestamp }
               enableIncrement
               isLoading={ isLoading }
-              color="text_secondary"
+              color="white"
               fontWeight="400"
               fontSize="sm"
               flexShrink={ 0 }
@@ -86,14 +86,14 @@ const LatestTxsItem = ({ tx, isLoading }: Props) => {
       <Flex flexDir="column">
         { !config.UI.views.tx.hiddenFields?.value && (
           <Skeleton isLoaded={ !isLoading } my="3px">
-            <Text as="span" whiteSpace="pre">Value </Text>
-            <Text as="span" variant="secondary">{ getValueWithUnit(tx.value).dp(5).toFormat() } { currencyUnits.ether }</Text>
+            <Text as="span" whiteSpace="pre" color="white">Value </Text>
+            <Text as="span" variant="secondary" color="customBlue.300">{ getValueWithUnit(tx.value).dp(5).toFormat() } { currencyUnits.ether }</Text>
           </Skeleton>
         ) }
         { !config.UI.views.tx.hiddenFields?.tx_fee && (
           <Skeleton isLoaded={ !isLoading } display="flex" whiteSpace="pre" my="3px">
-            <Text as="span">Fee </Text>
-            <TxFee tx={ tx } accuracy={ 5 } color="text_secondary"/>
+            <Text as="span" color="white">Fee </Text>
+            <TxFee tx={ tx } accuracy={ 5 } color="customBlue.300"/>
           </Skeleton>
         ) }
       </Flex>

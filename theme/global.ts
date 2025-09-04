@@ -12,6 +12,14 @@ const global = (props: StyleFunctionProps) => ({
     ...getDefaultTransitionProps(),
     '-webkit-tap-highlight-color': 'transparent',
     'font-variant-ligatures': 'no-contextual',
+    backgroundImage: mode(
+      'url("/static/bg.png")',
+      'url("/static/bg.png")',
+    )(props),
+    'background-size': '100% auto',
+    'background-position': 'bottom center',
+    'background-repeat': 'no-repeat',
+    // "color":"#fff"
   },
   mark: {
     bgColor: mode('green.100', 'green.800')(props),

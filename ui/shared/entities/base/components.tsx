@@ -88,7 +88,7 @@ interface EntityIconProps extends Pick<IconProps, 'color' | 'borderRadius' | 'ma
 export interface IconBaseProps extends Pick<EntityBaseProps, 'isLoading' | 'noIcon'>, EntityIconProps {}
 
 const Icon = ({ isLoading, noIcon, size, name, color, borderRadius, marginRight, boxSize }: IconBaseProps) => {
-  const defaultColor = useColorModeValue('gray.500', 'gray.400');
+  const defaultColor = useColorModeValue('gray.500', 'customBlue.300');
 
   if (noIcon || !name) {
     return null;
