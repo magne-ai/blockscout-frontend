@@ -116,8 +116,8 @@ const SearchBarInput = (
         mr={{ base: 1, lg: isHomepage ? 2 : 1 }}
         borderRadius="sm"
         borderWidth="1px"
-        borderColor="gray.400"
-        color="gray.400"
+        borderColor={ isHomepage ? 'customBlue.300' : 'customYellow.400' }
+        color={ isHomepage ? 'customBlue.300' : 'customYellow.400' }
         display={{ base: 'none', lg: 'flex' }}
       >
         /
@@ -150,7 +150,8 @@ const SearchBarInput = (
     >
       <InputGroup size={{ base: 'sm', lg: isHomepage ? 'sm_md' : 'sm' }}>
         <InputLeftElement w={{ base: isHomepage ? 6 : 4, lg: 6 }} ml={{ base: isHomepage ? 4 : 3, lg: 4 }} h="100%">
-          <IconSvg name="search" boxSize={{ base: isHomepage ? 6 : 4, lg: 6 }} color={ useColorModeValue('blackAlpha.600', 'whiteAlpha.600') }/>
+          <IconSvg name="search" boxSize={{ base: isHomepage ? 6 : 4, lg: 6 }}
+            color={ useColorModeValue('blackAlpha.600', isHomepage ? 'customBlue.300' : 'customYellow.400') }/>
         </InputLeftElement>
         <Input
           pl={{ base: isHomepage ? '50px' : '38px', lg: '50px' }}
@@ -165,10 +166,12 @@ const SearchBarInput = (
           }}
           placeholder={ isMobile ? 'Search by address / ... ' : 'Search by address / txn hash / block / token... ' }
           onChange={ handleChange }
-          border={ isHomepage ? 'none' : '2px solid' }
-          borderColor={ useColorModeValue('blackAlpha.100', 'whiteAlpha.200') }
+          border={ isHomepage ? 'none' : '1px solid' }
+          borderColor={ useColorModeValue('blackAlpha.100', isHomepage ? 'whiteAlpha.200' : 'customBlue.300') + ' !important' }
           _focusWithin={{ _placeholder: { color: 'gray.300' } }}
-          color={ useColorModeValue('black', 'white') }
+          color={ useColorModeValue('black', isHomepage ? 'customBlue.50' : 'customYellow.400') }
+          bgColor={ isHomepage ? 'white' : 'gray.900' }
+          _hover={{ color: isHomepage ? 'customBlue.50' : 'customYellow.400' }}
           value={ value }
         />
         <InputRightElement top={{ base: 2, lg: isHomepage ? 3 : 2 }} right={ 2 }>

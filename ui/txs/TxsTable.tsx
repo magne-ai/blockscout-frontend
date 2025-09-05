@@ -52,12 +52,12 @@ const TxsTable = ({
       <Table minWidth="950px">
         <TheadSticky top={ top }>
           <Tr>
-            <Th width="54px"></Th>
-            <Th width="180px">Txn hash</Th>
-            <Th width="160px">Type</Th>
-            <Th width="20%">Method</Th>
+            <Th width="54px" bg="transparent"></Th>
+            <Th width="180px" bg="transparent" color="text_secondary">Txn hash</Th>
+            <Th width="160px" bg="transparent" color="text_secondary">Type</Th>
+            <Th width="20%" bg="transparent" color="text_secondary">Method</Th>
             { showBlockInfo && (
-              <Th width="18%">
+              <Th width="18%" bg="transparent">
                 <Link onClick={ isLoading ? undefined : sort('block_number') } display="flex" alignItems="center">
                   { sorting === 'block_number-asc' && <IconSvg boxSize={ 5 } name="arrows/east" transform="rotate(-90deg)"/> }
                   { sorting === 'block_number-desc' && <IconSvg boxSize={ 5 } name="arrows/east" transform="rotate(90deg)"/> }
@@ -65,9 +65,9 @@ const TxsTable = ({
                 </Link>
               </Th>
             ) }
-            <Th width="224px">From/To</Th>
+            <Th width="224px" bg="transparent" color="text_secondary">From/To</Th>
             { !config.UI.views.tx.hiddenFields?.value && (
-              <Th width="20%" isNumeric>
+              <Th width="20%" isNumeric bg="transparent">
                 <Link onClick={ isLoading ? undefined : sort('value') } display="flex" alignItems="center" justifyContent="end">
                   { sorting === 'value-asc' && <IconSvg boxSize={ 5 } name="arrows/east" transform="rotate(-90deg)"/> }
                   { sorting === 'value-desc' && <IconSvg boxSize={ 5 } name="arrows/east" transform="rotate(90deg)"/> }
@@ -76,7 +76,7 @@ const TxsTable = ({
               </Th>
             ) }
             { !config.UI.views.tx.hiddenFields?.tx_fee && (
-              <Th width="20%" isNumeric pr={ 5 }>
+              <Th width="20%" isNumeric pr={ 5 } bg="transparent">
                 <Link onClick={ isLoading ? undefined : sort('fee') } display="flex" alignItems="center" justifyContent="end">
                   { sorting === 'fee-asc' && <IconSvg boxSize={ 5 } name="arrows/east" transform="rotate(-90deg)"/> }
                   { sorting === 'fee-desc' && <IconSvg boxSize={ 5 } name="arrows/east" transform="rotate(90deg)"/> }

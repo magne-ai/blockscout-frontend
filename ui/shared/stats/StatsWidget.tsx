@@ -72,7 +72,7 @@ const StatsWidget = ({
         p={ 3 }
         borderRadius="base"
         borderWidth="1px"
-        borderColor="borderColor.100"
+        borderColor={ !isLoading ? 'borderColor.100' : '' }
         justifyContent="space-between"
         columnGap={ 2 }
         { ...(href && !isLoading ?

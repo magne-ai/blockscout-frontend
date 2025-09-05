@@ -57,8 +57,8 @@ const TopBarStats = () => {
       { data?.coin_price && (
         <Flex columnGap={ 1 }>
           <Skeleton isLoaded={ !isPlaceholderData }>
-            <chakra.span color="text_secondary">{ config.chain.currency.symbol } </chakra.span>
-            <span>${ Number(data.coin_price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 6 }) }</span>
+            <chakra.span color="customBlue.100">{ config.chain.currency.symbol } </chakra.span>
+            <span color="text_secondary">${ Number(data.coin_price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 6 }) }</span>
           </Skeleton>
           { data.coin_price_change_percentage && (
             <Skeleton isLoaded={ !isPlaceholderData }>

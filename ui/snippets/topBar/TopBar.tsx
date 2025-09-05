@@ -10,7 +10,7 @@ import Settings from './settings/Settings';
 import TopBarStats from './TopBarStats';
 
 const TopBar = () => {
-  const bgColor = useColorModeValue('gray.50', 'whiteAlpha.100');
+  const bgColor = useColorModeValue('gray.50', 'customBlue.400');
 
   return (
     <Box bgColor={ bgColor }>

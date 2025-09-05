@@ -31,7 +31,7 @@ const LatestBlocksItem = ({ block, isLoading }: Props) => {
       transitionTimingFunction="linear"
       borderRadius="md"
       border="1px solid"
-      borderColor={ borderColor }
+      borderColor={ !isLoading ? borderColor : 'whiteAlpha.200' }
       bg={ !isLoading ? 'customBlue.200' : '' }
       p={ 3 }
     >

@@ -34,7 +34,7 @@ const TheadSticky = ({ top, children, ...restProps }: Props) => {
     ...restProps,
     position: 'sticky' as PositionProps['position'],
     top: top ? `${ top }px` : 0,
-    backgroundColor: useColorModeValue('white', 'black'),
+    backgroundColor: useColorModeValue('white', 'gray.900'),
     boxShadow: isSticky ? 'md' : 'none',
     zIndex: '1',
   };

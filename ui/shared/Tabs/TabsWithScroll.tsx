@@ -116,7 +116,11 @@ const TabsWithScroll = ({
         themeProps={ themeProps }
         isLoading={ isLoading }
       />
-      <TabPanels>
+      <TabPanels bg="customBlue.200"
+        borderWidth="1px"
+        borderColor="customBlue.50"
+        borderRadius="8px"
+      >
         { tabsList.map((tab) => (
           <TabPanel padding={ 0 } key={ tab.id?.toString() || (typeof tab.title === 'string' ? tab.title : undefined) }>
             { tab.component }

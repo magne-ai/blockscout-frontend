@@ -111,7 +111,6 @@
 	| "networks"
 	| "networks/icon-placeholder"
 	| "networks/logo-placeholder"
-	| "networks/logo-placeholder2"
 	| "nft_shield"
 	| "open-link"
 	| "output_roots"
