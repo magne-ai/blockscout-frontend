@@ -68,7 +68,7 @@ const SettingsColorTheme = ({ onSelect }: Props) => {
   const activeTheme = COLOR_THEMES.find((theme) => theme.hex === activeHex);
 
   return (
-    <div>
+    <div style={{ display: 'none' }}>
       <Box fontWeight={ 600 }>Color theme</Box>
       <Box color="text_secondary" mt={ 1 } mb={ 2 }>{ activeTheme?.label }</Box>
       <Flex>
