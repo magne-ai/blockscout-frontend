@@ -9,7 +9,7 @@ export default function useColors() {
     },
     bg: {
       'default': 'transparent',
-      active: useColorModeValue('blue.50', 'gray.800'),
+      active: useColorModeValue('blue.50', 'customBlueAlpha.300'), //gray.800
     },
     border: {
       'default': 'divider',
