@@ -22,7 +22,6 @@ const LatestTransactions = () => {
       placeholderData: Array(txsCount).fill(TX),
     },
   });
-
   const { num, socketAlert } = useNewTxsSocket();
 
   if (isError) {
@@ -48,7 +47,7 @@ const LatestTransactions = () => {
             bg={ !isPlaceholderData ? 'customBlue.200' : '' }
             borderWidth="1px"
             borderTopWidth="0"
-            borderColor="customBlue.50"
+            borderColor={ !isPlaceholderData ? 'customBlue.50' : '' }
             borderBottomRadius="12px">
             { data.slice(0, txsCount).map(((tx, index) => (
               <LatestTxsItem

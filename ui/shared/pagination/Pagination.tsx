@@ -30,6 +30,8 @@ const Pagination = ({ page, onNextPageClick, onPrevPageClick, resetPage, hasPage
           size="sm"
           onClick={ resetPage }
           isDisabled={ page === 1 || isLoading }
+          color="white"
+          borderColor="customBlue.50"
         >
           First
         </Button>
@@ -41,8 +43,9 @@ const Pagination = ({ page, onNextPageClick, onPrevPageClick, resetPage, hasPage
           size="sm"
           aria-label="Prev page"
           w="36px"
-          icon={ <IconSvg name="arrows/east-mini" w={ 5 } h={ 5 }/> }
+          icon={ <IconSvg color="white" name="arrows/east-mini" w={ 5 } h={ 5 }/> }
           isDisabled={ !canGoBackwards || isLoading }
+          borderColor="customBlue.50"
         />
       </Skeleton>
       <Skeleton isLoaded={ !showSkeleton } display="inline-block" borderRadius="base">
@@ -50,11 +53,12 @@ const Pagination = ({ page, onNextPageClick, onPrevPageClick, resetPage, hasPage
           variant="outline"
           size="sm"
           data-selected={ true }
-          borderWidth="1px"
+          borderWidth="0"
           fontWeight={ 400 }
           h={ 8 }
           minW="36px"
           cursor="unset"
+          bgColor={ 'customBlue.50' + ' !important' }
         >
           { page }
         </Button>
@@ -66,8 +70,9 @@ const Pagination = ({ page, onNextPageClick, onPrevPageClick, resetPage, hasPage
           size="sm"
           aria-label="Next page"
           w="36px"
-          icon={ <IconSvg name="arrows/east-mini" w={ 5 } h={ 5 } transform="rotate(180deg)"/> }
+          icon={ <IconSvg color="white" name="arrows/east-mini" w={ 5 } h={ 5 } transform="rotate(180deg)"/> }
           isDisabled={ !hasNextPage || isLoading }
+          borderColor="customBlue.50"
         />
       </Skeleton>
       { /* not implemented yet */ }
