@@ -135,7 +135,9 @@ const StatsWidget = ({
               </>
             ) }
             { period && (
-              <Text variant="secondary" fontSize="xs" fontWeight={ 400 } ml={ 1 }>
+              <Text variant="secondary" fontSize="xs" fontWeight={ 400 } ml={ 1 }
+                color={ lableColor }
+              >
                 ({ period })
               </Text>
             ) }
