@@ -128,21 +128,21 @@ const Footer = () => {
             />
           </Link>
         </Flex>
-        <Text mt={ 3 } fontSize="xs">
+        <Text mt={ 3 } fontSize="xs" color="text">
           Blockscout is a tool for inspecting and analyzing EVM based blockchains. Blockchain explorer for Ethereum Networks.
         </Text>
         <Box mt={ 6 } alignItems="start" fontSize="xs" lineHeight={ 5 }>
           { apiVersionUrl && (
-            <Text>
+            <Text color="text">
               Backend: <Link href={ apiVersionUrl } target="_blank">{ backendVersionData?.backend_version }</Link>
             </Text>
           ) }
           { frontendLink && (
-            <Text>
+            <Text color="text">
               Frontend: { frontendLink }
             </Text>
           ) }
-          <Text>
+          <Text color="text">
             Copyright { copy } Blockscout Limited 2023-{ (new Date()).getFullYear() }
           </Text>
         </Box>
@@ -187,6 +187,7 @@ const Footer = () => {
         <Grid { ...contentProps }>
           <div>
             { renderNetworkInfo() }
+            { renderProjectInfo() }
             { renderRecaptcha() }
           </div>
 
@@ -234,6 +235,7 @@ const Footer = () => {
       >
 
         { renderNetworkInfo({ lg: 'network' }) }
+        { renderProjectInfo({ lg: 'info' }) }
         { renderRecaptcha({ lg: 'recaptcha' }) }
 
         <Grid
@@ -254,6 +256,7 @@ const Footer = () => {
           justifyContent={{ lg: 'flex-end' }}
           mt={{ base: 8, lg: 0 }}
         >
+          { BLOCKSCOUT_LINKS.map(link => <FooterLinkItem { ...link } key={ link.text }/>) }
         </Grid>
       </Grid>
     </Box>

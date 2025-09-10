@@ -6,7 +6,8 @@ const semanticTokens = {
     },
     text: {
       'default': 'blackAlpha.800',
-      _dark: 'whiteAlpha.800',
+      // _dark: 'whiteAlpha.800',
+      _dark: 'white',
     },
     text_secondary: {
       'default': 'gray.500',
