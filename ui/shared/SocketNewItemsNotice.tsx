@@ -5,6 +5,7 @@ import React from 'react';
 import config from 'configs/app';
 import Skeleton from 'ui/shared/chakra/Skeleton';
 
+const BACKGROUND_DEFAULT = 'linear-gradient(90deg,#FFBF00 0%,#851B85 100%)';
 interface InjectedProps {
   content: React.ReactNode;
 }
@@ -69,7 +70,7 @@ const SocketNewItemsNotice = chakra(({ children, className, url, num, alert, typ
       fontSize="sm"
       lineHeight={ 5 }
       // bgColor={ bgColor }
-      bgImage={ config.UI.homepage.plate.background }
+      bgImage={ config.UI.homepage.plate.background || BACKGROUND_DEFAULT }
       color={ color }
     >
       { alertContent }

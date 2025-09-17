@@ -8,7 +8,7 @@ import getDefaultTransitionProps from './utils/getDefaultTransitionProps';
 
 const global = (props: StyleFunctionProps) => ({
   body: {
-    bg: mode('white', 'black')(props),
+    bg: mode('white', 'customBlue.200')(props),
     ...getDefaultTransitionProps(),
     '-webkit-tap-highlight-color': 'transparent',
     'font-variant-ligatures': 'no-contextual',
