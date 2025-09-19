@@ -26,7 +26,6 @@ const OG_TYPE_DICT: Record<Route['pathname'], OGPageType> = {
   '/stats': 'Root page',
   '/stats/[id]': 'Regular page',
   '/api-docs': 'Regular page',
-  '/graphiql': 'Regular page',
   '/search-results': 'Regular page',
   '/auth/profile': 'Root page',
   '/account/merits': 'Regular page',
@@ -54,16 +53,35 @@ const OG_TYPE_DICT: Record<Route['pathname'], OGPageType> = {
   '/name-domains/[name]': 'Regular page',
   '/validators': 'Root page',
   '/validators/[id]': 'Regular page',
+  '/epochs': 'Root page',
+  '/epochs/[number]': 'Regular page',
   '/gas-tracker': 'Root page',
   '/mud-worlds': 'Root page',
   '/token-transfers': 'Root page',
   '/advanced-filter': 'Root page',
   '/pools': 'Root page',
   '/pools/[hash]': 'Regular page',
+  '/interop-messages': 'Root page',
+  '/operations': 'Root page',
+  '/operation/[id]': 'Regular page',
+  '/cc/tx/[hash]': 'Regular page',
+
+  // multichain routes
+  '/chain/[chain-slug]/accounts/label/[slug]': 'Root page',
+  '/chain/[chain-slug]/advanced-filter': 'Regular page',
+  '/chain/[chain-slug]/block/[height_or_hash]': 'Regular page',
+  '/chain/[chain-slug]/block/countdown': 'Regular page',
+  '/chain/[chain-slug]/block/countdown/[height]': 'Regular page',
+  '/chain/[chain-slug]/csv-export': 'Regular page',
+  '/chain/[chain-slug]/op/[hash]': 'Regular page',
+  '/chain/[chain-slug]/token/[hash]': 'Regular page',
+  '/chain/[chain-slug]/token/[hash]/instance/[id]': 'Regular page',
+  '/chain/[chain-slug]/tx/[hash]': 'Regular page',
 
   // service routes, added only to make typescript happy
   '/login': 'Regular page',
   '/sprite': 'Regular page',
+  '/chakra': 'Regular page',
   '/api/metrics': 'Regular page',
   '/api/monitoring/invalid-api-schema': 'Regular page',
   '/api/log': 'Regular page',
@@ -72,7 +90,6 @@ const OG_TYPE_DICT: Record<Route['pathname'], OGPageType> = {
   '/api/csrf': 'Regular page',
   '/api/healthz': 'Regular page',
   '/api/config': 'Regular page',
-  '/api/sprite': 'Regular page',
 };
 
 export default function getPageOgType(pathname: Route['pathname']) {

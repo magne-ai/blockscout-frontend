@@ -1,11 +1,10 @@
-import { Box, Hide, Show } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 import config from 'configs/app';
-import useIsMobile from 'lib/hooks/useIsMobile';
 import { generateListStub } from 'stubs/utils';
 import { VALIDATORS_ZILLIQA_ITEM } from 'stubs/validators';
-import ActionBar from 'ui/shared/ActionBar';
+import ActionBar, { ACTION_BAR_HEIGHT_DESKTOP } from 'ui/shared/ActionBar';
 import DataListDisplay from 'ui/shared/DataListDisplay';
 import PageTitle from 'ui/shared/Page/PageTitle';
 import Pagination from 'ui/shared/pagination/Pagination';
@@ -14,14 +13,11 @@ import ValidatorsList from 'ui/validators/zilliqa/ValidatorsList';
 import ValidatorsTable from 'ui/validators/zilliqa/ValidatorsTable';
 
 const ValidatorsZilliqa = () => {
-
-  const isMobile = useIsMobile();
-
   const { isError, isPlaceholderData, data, pagination } = useQueryWithPages({
-    resourceName: 'validators_zilliqa',
+    resourceName: 'general:validators_zilliqa',
     options: {
       enabled: config.features.validators.isEnabled,
-      placeholderData: generateListStub<'validators_zilliqa'>(
+      placeholderData: generateListStub<'general:validators_zilliqa'>(
         VALIDATORS_ZILLIQA_ITEM,
         50,
         { next_page_params: null },
@@ -29,7 +25,7 @@ const ValidatorsZilliqa = () => {
     },
   });
 
-  const actionBar = (!isMobile || pagination.isVisible) ? (
+  const actionBar = pagination.isVisible ? (
     <ActionBar mt={ -6 }>
       <Pagination ml="auto" { ...pagination }/>
     </ActionBar>
@@ -37,12 +33,12 @@ const ValidatorsZilliqa = () => {
 
   const content = data?.items ? (
     <>
-      <Show below="lg" ssr={ false }>
+      <Box hideFrom="lg">
         <ValidatorsList data={ data.items } isLoading={ isPlaceholderData }/>
-      </Show>
-      <Hide below="lg" ssr={ false }>
-        <ValidatorsTable data={ data.items } isLoading={ isPlaceholderData }/>
-      </Hide>
+      </Box>
+      <Box hideBelow="lg">
+        <ValidatorsTable data={ data.items } isLoading={ isPlaceholderData } top={ pagination.isVisible ? ACTION_BAR_HEIGHT_DESKTOP : 0 }/>
+      </Box>
     </>
   ) : null;
 
@@ -51,11 +47,12 @@ const ValidatorsZilliqa = () => {
       <PageTitle title="Validators" withTextAd/>
       <DataListDisplay
         isError={ isError }
-        items={ data?.items }
+        itemsNum={ data?.items.length }
         emptyText="There are no validators."
-        content={ content }
         actionBar={ actionBar }
-      />
+      >
+        { content }
+      </DataListDisplay>
     </Box>
   );
 };

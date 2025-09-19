@@ -1,4 +1,3 @@
-import type { As } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/react';
 import React from 'react';
 
@@ -27,7 +26,7 @@ const Icon = (props: EntityBase.IconBaseProps) => {
   return (
     <EntityBase.Icon
       { ...props }
-      name={ props.name ?? 'key' }
+      name={ 'name' in props ? props.name : 'key' }
     />
   );
 };
@@ -35,10 +34,12 @@ const Icon = (props: EntityBase.IconBaseProps) => {
 type ContentProps = Omit<EntityBase.ContentBaseProps, 'text'> & Pick<EntityProps, 'id'>;
 
 const Content = chakra((props: ContentProps) => {
+  const { id, ...rest } = props;
+
   return (
     <EntityBase.Content
-      { ...props }
-      text={ props.id }
+      { ...rest }
+      text={ id }
     />
   );
 });
@@ -46,10 +47,12 @@ const Content = chakra((props: ContentProps) => {
 type CopyProps = Omit<EntityBase.CopyBaseProps, 'text'> & Pick<EntityProps, 'id'>;
 
 const Copy = (props: CopyProps) => {
+  const { id, ...rest } = props;
+
   return (
     <EntityBase.Copy
-      { ...props }
-      text={ props.id }
+      { ...rest }
+      text={ id }
     />
   );
 };
@@ -60,21 +63,20 @@ export interface EntityProps extends EntityBase.EntityBaseProps {
   id: string;
 }
 
-const UserOpEntity = (props: EntityProps) => {
+const ValidatorEntity = (props: EntityProps) => {
   const partsProps = distributeEntityProps(props);
+  const content = <Content { ...partsProps.content }/>;
 
   return (
     <Container { ...partsProps.container }>
       <Icon { ...partsProps.icon }/>
-      <Link { ...partsProps.link }>
-        <Content { ...partsProps.content }/>
-      </Link>
+      { props.noLink ? content : <Link { ...partsProps.link }>{ content }</Link> }
       <Copy { ...partsProps.copy }/>
     </Container>
   );
 };
 
-export default React.memo(chakra<As, EntityProps>(UserOpEntity));
+export default React.memo(chakra(ValidatorEntity));
 
 export {
   Container,

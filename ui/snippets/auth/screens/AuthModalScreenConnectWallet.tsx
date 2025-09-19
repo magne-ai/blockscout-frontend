@@ -35,7 +35,7 @@ const AuthModalScreenConnectWallet = ({ onSuccess, onError, isAuth, source, logi
     onError: handleSignInError,
     source,
     isAuth,
-    executeRecaptchaAsync: recaptcha.executeAsync,
+    fetchProtectedResource: recaptcha.fetchProtectedResource,
     loginToRewards,
   });
 
@@ -47,9 +47,9 @@ const AuthModalScreenConnectWallet = ({ onSuccess, onError, isAuth, source, logi
   }, [ start ]);
 
   return (
-    <Center h="100px">
-      <Spinner/>
-      <ReCaptcha ref={ recaptcha.ref }/>
+    <Center minH="100px" flexDir="column">
+      { !recaptcha.isInitError && <Spinner size="xl"/> }
+      <ReCaptcha { ...recaptcha }/>
     </Center>
   );
 };

@@ -1,53 +1,58 @@
-import { Hide, Show } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 import useIsMobile from 'lib/hooks/useIsMobile';
-import { INTERNAL_TX } from 'stubs/internalTx';
-import { generateListStub } from 'stubs/utils';
+import { FilterInput } from 'toolkit/components/filters/FilterInput';
+import { apos } from 'toolkit/utils/htmlEntities';
 import InternalTxsList from 'ui/internalTxs/InternalTxsList';
 import InternalTxsTable from 'ui/internalTxs/InternalTxsTable';
+import useInternalTxsQuery from 'ui/internalTxs/useInternalTxsQuery';
 import ActionBar from 'ui/shared/ActionBar';
 import DataListDisplay from 'ui/shared/DataListDisplay';
 import PageTitle from 'ui/shared/Page/PageTitle';
 import Pagination from 'ui/shared/pagination/Pagination';
-import useQueryWithPages from 'ui/shared/pagination/useQueryWithPages';
 
 const InternalTxs = () => {
+
   const isMobile = useIsMobile();
 
-  const { isError, isPlaceholderData, data, pagination } = useQueryWithPages({
-    resourceName: 'internal_txs',
-    options: {
-      placeholderData: generateListStub<'internal_txs'>(
-        INTERNAL_TX,
-        50,
-        {
-          next_page_params: {
-            items_count: 50,
-            block_number: 1,
-            index: 1,
-            transaction_hash: '0x123',
-            transaction_index: 1,
-          },
-        },
-      ),
-    },
-  });
+  const { query, searchTerm, debouncedSearchTerm, onSearchTermChange } = useInternalTxsQuery();
+  const { isError, isPlaceholderData, data, pagination } = query;
 
-  const actionBar = (!isMobile || pagination.isVisible) ? (
-    <ActionBar mt={ -6 }>
-      <Pagination ml="auto" { ...pagination }/>
-    </ActionBar>
-  ) : null;
+  const filterInput = (
+    <FilterInput
+      w={{ base: '100%', lg: '350px' }}
+      size="sm"
+      onChange={ onSearchTermChange }
+      placeholder="Search by transaction hash"
+      initialValue={ searchTerm }
+    />
+  );
+
+  const actionBar = (
+    <>
+      <Box mb={ 6 } display={{ base: 'flex', lg: 'none' }}>
+        { filterInput }
+      </Box>
+      { (!isMobile || pagination.isVisible) && (
+        <ActionBar mt={ -6 }>
+          <Box display={{ base: 'none', lg: 'flex' }}>
+            { filterInput }
+          </Box>
+          <Pagination ml="auto" { ...pagination }/>
+        </ActionBar>
+      ) }
+    </>
+  );
 
   const content = data?.items ? (
     <>
-      <Show below="lg" ssr={ false }>
+      <Box hideFrom="lg">
         <InternalTxsList data={ data.items } isLoading={ isPlaceholderData }/>
-      </Show>
-      <Hide below="lg" ssr={ false }>
+      </Box>
+      <Box hideBelow="lg">
         <InternalTxsTable data={ data.items } isLoading={ isPlaceholderData }/>
-      </Hide>
+      </Box>
     </>
   ) : null;
 
@@ -59,11 +64,16 @@ const InternalTxs = () => {
       />
       <DataListDisplay
         isError={ isError }
-        items={ data?.items }
+        itemsNum={ data?.items.length }
         emptyText="There are no internal transactions."
-        content={ content }
+        filterProps={{
+          emptyFilteredText: `Couldn${ apos }t find any internal transaction that matches your query.`,
+          hasActiveFilters: Boolean(debouncedSearchTerm),
+        }}
         actionBar={ actionBar }
-      />
+      >
+        { content }
+      </DataListDisplay>
     </>
   );
 };

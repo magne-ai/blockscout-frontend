@@ -1,9 +1,9 @@
-import { Text, Flex, Box, useColorModeValue } from '@chakra-ui/react';
+import { Text, Flex, Box } from '@chakra-ui/react';
 import React from 'react';
 
 import type { ChainIndicatorId } from 'types/homepage';
 
-import Skeleton from 'ui/shared/chakra/Skeleton';
+import { Skeleton } from 'toolkit/chakra/skeleton';
 
 interface Props {
   id: ChainIndicatorId;
@@ -18,20 +18,17 @@ interface Props {
 }
 
 const ChainIndicatorItem = ({ id, title, value, valueDiff, icon, isSelected, onClick, isLoading, hasData }: Props) => {
-  const activeColor = useColorModeValue('gray.500', 'gray.400');
-  const activeBgColor = useColorModeValue('white', 'black');
-
   const handleClick = React.useCallback(() => {
     onClick(id);
   }, [ id, onClick ]);
 
   const valueContent = (() => {
     if (!hasData) {
-      return <Text variant="secondary" fontWeight={ 400 }>no data</Text>;
+      return <Text color="text.secondary" fontWeight={ 400 }>no data</Text>;
     }
 
     return (
-      <Skeleton isLoaded={ !isLoading } variant="secondary" fontWeight={ 600 } minW="30px">
+      <Skeleton loading={ isLoading } fontWeight={ 600 } minW="30px">
         { value }
       </Skeleton>
     );
@@ -45,7 +42,7 @@ const ChainIndicatorItem = ({ id, title, value, valueDiff, icon, isSelected, onC
     const diffColor = valueDiff >= 0 ? 'green.500' : 'red.500';
 
     return (
-      <Skeleton isLoaded={ !isLoading } ml={ 1 } display="flex" alignItems="center" color={ diffColor }>
+      <Skeleton loading={ isLoading } ml={ 1 } display="flex" alignItems="center" color={ diffColor }>
         <span>{ valueDiff >= 0 ? '+' : '-' }</span>
         <Text color={ diffColor } fontWeight={ 600 }>{ Math.abs(valueDiff) }%</Text>
       </Skeleton>
@@ -62,21 +59,21 @@ const ChainIndicatorItem = ({ id, title, value, valueDiff, icon, isSelected, onC
       as="li"
       borderRadius="base"
       cursor="pointer"
-      color={ isSelected ? activeColor : 'link' }
-      bgColor={ isSelected ? activeBgColor : undefined }
+      color={ isSelected ? 'text.secondary' : 'link.primary' }
+      bgColor={ isSelected ? { _light: 'white', _dark: 'black' } : undefined }
       onClick={ handleClick }
       fontSize="xs"
       fontWeight={ 500 }
       _hover={{
-        bgColor: activeBgColor,
-        color: isSelected ? activeColor : 'link_hovered',
+        bgColor: { _light: 'white', _dark: 'black' },
+        color: isSelected ? 'text.secondary' : 'hover',
         zIndex: 1,
       }}
     >
       { icon }
       <Box display={{ base: 'none', lg: 'block' }}>
         <span>{ title }</span>
-        <Flex alignItems="center" color="text">
+        <Flex alignItems="center" color="text.primary">
           { valueContent }
           { valueDiffContent }
         </Flex>

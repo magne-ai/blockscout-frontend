@@ -3,6 +3,8 @@ import type { Abi, AbiType } from 'abitype';
 export type SmartContractMethodArgType = AbiType;
 export type SmartContractMethodStateMutability = 'view' | 'nonpayable' | 'payable';
 
+export type SmartContractCreationStatus = 'success' | 'failed' | 'selfdestructed';
+
 export type SmartContractLicenseType =
 'none' |
 'unlicense' |
@@ -26,18 +28,20 @@ export type SmartContractProxyType =
   | 'eip930'
   | 'eip2535'
   | 'eip7702'
+  | 'erc7760'
   | 'master_copy'
   | 'basic_implementation'
   | 'basic_get_implementation'
   | 'comptroller'
   | 'clone_with_immutable_arguments'
+  | 'resolved_delegate_proxy'
   | 'unknown'
   | null;
 
 export interface SmartContract {
   deployed_bytecode: string | null;
   creation_bytecode: string | null;
-  is_self_destructed: boolean;
+  creation_status: SmartContractCreationStatus | null;
   abi: Abi | null;
   compiler_version: string | null;
   evm_version: string | null;
@@ -69,7 +73,6 @@ export interface SmartContract {
   };
   verified_twin_address_hash: string | null;
   verified_twin_filecoin_robust_address?: string | null;
-  proxy_type: SmartContractProxyType | null;
   language: string | null;
   license_type: SmartContractLicenseType | null;
   certified?: boolean;
@@ -160,7 +163,7 @@ export interface SmartContractMudSystemsResponse {
 }
 
 export interface SmartContractMudSystemItem {
-  address: string;
+  address_hash: string;
   name: string;
 }
 

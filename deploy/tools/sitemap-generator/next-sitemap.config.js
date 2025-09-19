@@ -59,7 +59,7 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/auth/*', '/login', '/sprite', '/account/*', '/api/*', '/node-api/*'],
+        disallow: ['/auth/*', '/login', '/chakra', '/sprite', '/account/*', '/csv-export'],
       },
     ],
   },
@@ -70,6 +70,8 @@ module.exports = {
     '/auth/*',
     '/login',
     '/sprite',
+    '/chakra',
+    '/csv-export',
   ],
   transform: async(config, path) => {
     switch (path) {
@@ -111,6 +113,11 @@ module.exports = {
         break;
       case '/output-roots':
         if (process.env.NEXT_PUBLIC_ROLLUP_OUTPUT_ROOTS_ENABLED !== 'true') {
+          return null;
+        }
+        break;
+      case '/interop-messages':
+        if (process.env.NEXT_PUBLIC_INTEROP_ENABLED !== 'true') {
           return null;
         }
         break;
@@ -165,6 +172,10 @@ module.exports = {
     };
   },
   additionalPaths: async(config) => {
+    if(process.env.NEXT_PUBLIC_OP_SUPERCHAIN_ENABLED === 'true'){
+      return;
+    }
+
     const addresses = fetchResource(
       `${ apiUrl }/addresses`,
       (data) => data.items.map(({ hash }) => `/address/${ hash }`),

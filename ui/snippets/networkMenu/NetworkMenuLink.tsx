@@ -1,11 +1,11 @@
-import { Box, Flex, Text, Image, useColorModeValue } from '@chakra-ui/react';
+import { Box, Text, chakra } from '@chakra-ui/react';
 import React from 'react';
 
 import type { FeaturedNetwork } from 'types/networks';
 
+import { useColorModeValue } from 'toolkit/chakra/color-mode';
+import { Image } from 'toolkit/chakra/image';
 import IconSvg from 'ui/shared/IconSvg';
-
-import useColors from './useColors';
 
 interface Props extends FeaturedNetwork {
   isActive?: boolean;
@@ -13,17 +13,16 @@ interface Props extends FeaturedNetwork {
 }
 
 const NetworkMenuLink = ({ title, icon, isActive: isActiveProp, isMobile, url, invertIconInDarkMode }: Props) => {
-  const colors = useColors();
   const darkModeFilter = { filter: 'brightness(0) invert(1)' };
   const style = useColorModeValue({}, invertIconInDarkMode ? darkModeFilter : {});
 
   const iconEl = icon ? (
-    <Image w="30px" h="30px" src={ icon } alt={ `${ title } network icon` } style={ style }/>
+    <Image w="20px" h="20px" src={ icon } alt={ `${ title } network icon` } style={ style }/>
   ) : (
     <IconSvg
       name="networks/icon-placeholder"
-      boxSize="30px"
-      color={ colors.iconPlaceholder.default }
+      boxSize="20px"
+      color={{ base: 'blackAlpha.100', _dark: 'whiteAlpha.300' }}
     />
   );
 
@@ -44,25 +43,24 @@ const NetworkMenuLink = ({ title, icon, isActive: isActiveProp, isMobile, url, i
 
   return (
     <Box as="li" listStyleType="none">
-      <Flex
-        as="a"
+      <chakra.a
+        display="flex"
         href={ url }
-        px={ 3 }
-        py="9px"
+        target="_blank"
+        px={ 2 }
+        py="5px"
+        opacity={ isActive ? 0.6 : 1 }
         alignItems="center"
         cursor="pointer"
         pointerEvents={ isActive ? 'none' : 'initial' }
         borderRadius="base"
-        color={ isActive ? colors.text.active : colors.text.default }
-        bgColor={ isActive ? colors.bg.active : colors.bg.default }
-        _hover={{ color: isActive ? colors.text.active : colors.text.hover }}
+        _hover={{ color: isActive ? 'text.primary' : 'hover' }}
       >
         { iconEl }
         <Text
-          marginLeft={ 3 }
-          fontWeight="500"
+          marginLeft={ 2 }
           color="inherit"
-          fontSize={ isMobile ? 'sm' : 'md' }
+          fontSize="sm"
           lineHeight={ isMobile ? '20px' : '24px' }
         >
           { title }
@@ -70,11 +68,11 @@ const NetworkMenuLink = ({ title, icon, isActive: isActiveProp, isMobile, url, i
         { isActive && (
           <IconSvg
             name="check"
-            boxSize="24px"
+            boxSize="20px"
             marginLeft="auto"
           />
         ) }
-      </Flex>
+      </chakra.a>
     </Box>
   );
 };

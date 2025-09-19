@@ -1,11 +1,12 @@
-import { Image } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import * as v from 'valibot';
 
 import config from 'configs/app';
-import Skeleton from 'ui/shared/chakra/Skeleton';
-import LinkExternal from 'ui/shared/links/LinkExternal';
+import { Image } from 'toolkit/chakra/image';
+import { Link } from 'toolkit/chakra/link';
+import { Skeleton } from 'toolkit/chakra/skeleton';
+import { HEX_REGEXP_WITH_0X } from 'toolkit/utils/regexp';
 import TextSeparator from 'ui/shared/TextSeparator';
 
 const feature = config.features.saveOnGas;
@@ -26,9 +27,9 @@ const AddressSaveOnGas = ({ gasUsed, address }: Props) => {
   const gasUsedNumber = Number(gasUsed);
 
   const query = useQuery({
-    queryKey: [ 'gas_hawk_saving_potential', { address } ],
+    queryKey: [ 'external:gas_hawk_saving_potential', { address } ],
     queryFn: async() => {
-      if (!feature.isEnabled) {
+      if (!feature.isEnabled || !HEX_REGEXP_WITH_0X.test(address)) {
         return;
       }
 
@@ -40,7 +41,7 @@ const AddressSaveOnGas = ({ gasUsed, address }: Props) => {
       const parsedResponse = v.safeParse(responseSchema, response);
 
       if (!parsedResponse.success) {
-        throw Error('Invalid response schema');
+        throw Error(ERROR_NAME);
       }
 
       return parsedResponse.output;
@@ -52,12 +53,12 @@ const AddressSaveOnGas = ({ gasUsed, address }: Props) => {
   const errorMessage = query.error && 'message' in query.error ? query.error.message : undefined;
 
   React.useEffect(() => {
-    if (errorMessage === ERROR_NAME) {
+    if (feature.isEnabled && ERROR_NAME === errorMessage) {
       fetch('/node-api/monitoring/invalid-api-schema', {
         method: 'POST',
         body: JSON.stringify({
-          resource: 'gas_hawk_saving_potential',
-          url: feature.isEnabled ? feature.apiUrlTemplate.replace('<address>', address) : undefined,
+          resource: 'external:gas_hawk_saving_potential',
+          url: feature.isEnabled && HEX_REGEXP_WITH_0X.test(address) ? feature.apiUrlTemplate.replace('<address>', address) : undefined,
         }),
       });
     }
@@ -75,12 +76,12 @@ const AddressSaveOnGas = ({ gasUsed, address }: Props) => {
 
   return (
     <>
-      <TextSeparator color="divider"/>
-      <Skeleton isLoaded={ !query.isPlaceholderData } display="flex" alignItems="center" columnGap={ 2 }>
+      <TextSeparator/>
+      <Skeleton loading={ query.isPlaceholderData } display="flex" alignItems="center" columnGap={{ base: 1, lg: 2 }}>
         <Image src="/static/gas_hawk_logo.svg" w="15px" h="20px" alt="GasHawk logo"/>
-        <LinkExternal href="https://www.gashawk.io?utm_source=blockscout&utm_medium=address" fontSize="sm">
+        <Link href="https://www.gashawk.io?utm_source=blockscout&utm_medium=address" fontSize="sm" external>
           Save { percent.toLocaleString(undefined, { maximumFractionDigits: 0 }) }% with GasHawk
-        </LinkExternal>
+        </Link>
       </Skeleton>
     </>
   );

@@ -25,14 +25,14 @@ export default function useDescribeTxs(items: Array<Transaction> | undefined, vi
   };
 
   const describeQuery = useQuery({
-    queryKey: [ 'noves_describe_txs', queryKey ],
+    queryKey: [ 'general:noves_describe_txs', queryKey ],
     queryFn: async() => {
       const queries = txChunks.map((hashes) => {
         if (hashes.length === 0) {
           return Promise.resolve([]);
         }
 
-        return apiFetch('noves_describe_txs', {
+        return apiFetch('general:noves_describe_txs', {
           queryParams: {
             viewAsAccountAddress,
             hashes,
