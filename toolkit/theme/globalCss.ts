@@ -24,6 +24,10 @@ const globalCss: SystemConfig['globalCss'] = {
     WebkitTapHighlightColor: 'transparent',
     fontVariantLigatures: 'no-contextual',
     focusRingStyle: 'hidden',
+    backgroundImage: 'url("/static/bg.png")',
+    backgroundSize: '100% auto',
+    backgroundPosition: 'bottom center',
+    backgroundRepeat: 'no-repeat',
   },
   mark: {
     bg: 'global.mark.bg',

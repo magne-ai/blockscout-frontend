@@ -31,7 +31,7 @@ const LatestTxs = () => {
     },
   ];
 
-  const heading = <Heading level="3" mb={{ base: 3, lg: 0 }}>Latest transactions</Heading>;
+  const heading = <Heading level="3" mb={{ base: 3, lg: 0 }} color={{ _dark: 'customYellow.400' }} >Latest transactions</Heading>;
 
   const rightSlot = tab === 'txs_local' ? (
     <ChainSelect

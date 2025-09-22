@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 import type { InternalTransaction } from 'types/api/internalTransaction';
@@ -25,35 +26,41 @@ const InternalTxsTable = ({ data, currentAddress, isLoading, top, showBlockInfo 
 
   return (
     <AddressHighlightProvider>
-      <TableRoot minW="900px">
-        <TableHeaderSticky top={ top ?? 68 }>
-          <TableRow>
-            { chainData && <TableColumnHeader width="38px"></TableColumnHeader> }
-            <TableColumnHeader width="280px">
-              Parent txn hash
-              <TimeFormatToggle/>
-            </TableColumnHeader>
-            <TableColumnHeader width="15%">Type</TableColumnHeader>
-            { showBlockInfo && <TableColumnHeader width="15%">Block</TableColumnHeader> }
-            <TableColumnHeader width="50%">From/To</TableColumnHeader>
-            <TableColumnHeader width="20%" isNumeric>
-              Value { currencyUnits.ether }
-            </TableColumnHeader>
-          </TableRow>
-        </TableHeaderSticky>
-        <TableBody>
-          { data.map((item, index) => (
-            <InternalTxsTableItem
-              key={ item.transaction_hash + '_' + index }
-              { ...item }
-              currentAddress={ currentAddress }
-              isLoading={ isLoading }
-              showBlockInfo={ showBlockInfo }
-              chainData={ chainData }
-            />
-          )) }
-        </TableBody>
-      </TableRoot>
+      <Box
+        border="1px solid"
+        borderColor="border.divider"
+        borderTopRadius="8px"
+      >
+        <TableRoot minW="900px" >
+          <TableHeaderSticky top={ top ?? 68 }>
+            <TableRow>
+              { chainData && <TableColumnHeader width="38px"></TableColumnHeader> }
+              <TableColumnHeader width="280px">
+                Parent txn hash
+                <TimeFormatToggle/>
+              </TableColumnHeader>
+              <TableColumnHeader width="15%">Type</TableColumnHeader>
+              { showBlockInfo && <TableColumnHeader width="15%">Block</TableColumnHeader> }
+              <TableColumnHeader width="50%">From/To</TableColumnHeader>
+              <TableColumnHeader width="20%" isNumeric>
+                Value { currencyUnits.ether }
+              </TableColumnHeader>
+            </TableRow>
+          </TableHeaderSticky>
+          <TableBody>
+            { data.map((item, index) => (
+              <InternalTxsTableItem
+                key={ item.transaction_hash + '_' + index }
+                { ...item }
+                currentAddress={ currentAddress }
+                isLoading={ isLoading }
+                showBlockInfo={ showBlockInfo }
+                chainData={ chainData }
+              />
+            )) }
+          </TableBody>
+        </TableRoot>
+      </Box>
     </AddressHighlightProvider>
 
   );

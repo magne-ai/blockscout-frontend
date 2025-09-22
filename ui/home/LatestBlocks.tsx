@@ -103,7 +103,7 @@ const LatestBlocks = () => {
 
   return (
     <Box width={{ base: '100%', lg: '280px' }} flexShrink={ 0 }>
-      <Heading level="3">Latest blocks</Heading>
+      <Heading level="3" color={{ _dark: 'customYellow.400' }}>Latest blocks</Heading>
       { statsQueryResult.data?.network_utilization_percentage !== undefined && (
         <Skeleton loading={ statsQueryResult.isPlaceholderData } mt={ 2 } display="inline-block" textStyle="sm">
           <Text as="span">

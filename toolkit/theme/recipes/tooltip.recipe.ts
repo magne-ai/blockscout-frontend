@@ -53,6 +53,7 @@ export const recipe = defineSlotRecipe({
           borderRadius: 'md',
           textAlign: 'left',
           fontWeight: 'normal',
+          'backdrop-filter': 'blur(5px)',
         },
       },
     },

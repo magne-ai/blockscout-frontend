@@ -9,13 +9,13 @@ const DEFAULT_THEME_COLORS = {
       // so we use hex values instead
       // but it is not the case for other colors
       _light: { value: '#FFFFFF' }, // colors.white
-      _dark: { value: '#101112' }, // colors.black
+      _dark: { value: '#0B1838' }, // colors.black
     },
   },
   text: {
     primary: {
       _light: { value: '{colors.blackAlpha.800}' },
-      _dark: { value: '{colors.whiteAlpha.800}' },
+      _dark: { value: '{colors.white}' },
     },
     secondary: {
       _light: { value: '{colors.gray.500}' },
@@ -24,7 +24,7 @@ const DEFAULT_THEME_COLORS = {
   },
   hover: {
     _light: { value: '{colors.blue.400}' },
-    _dark: { value: '{colors.blue.400}' },
+    _dark: { value: '{colors.white}' },
   },
   selected: {
     control: {
@@ -34,7 +34,7 @@ const DEFAULT_THEME_COLORS = {
       },
       bg: {
         _light: { value: '{colors.blue.50}' },
-        _dark: { value: '{colors.whiteAlpha.100}' },
+        _dark: { value: '{colors.customGray.900}' },
       },
     },
     option: {
@@ -63,7 +63,7 @@ const DEFAULT_THEME_COLORS = {
   link: {
     primary: {
       _light: { value: '{colors.blue.600}' },
-      _dark: { value: '{colors.blue.300}' },
+      _dark: { value: '{colors.customYellow.400}' },
     },
   },
   graph: {
@@ -86,7 +86,7 @@ const DEFAULT_THEME_COLORS = {
     bg: {
       selected: {
         _light: { value: '{colors.blue.50}' },
-        _dark: { value: '{colors.gray.800}' },
+        _dark: { value: '{colors.customBlueAlpha.300}' },
       },
     },
     text: {
@@ -99,13 +99,13 @@ const DEFAULT_THEME_COLORS = {
   stats: {
     bg: {
       _light: { value: '{colors.gray.50}' },
-      _dark: { value: '{colors.whiteAlpha.100}' },
+      _dark: { value: '{colors.customGray.900}' },
     },
   },
   topbar: {
     bg: {
       _light: { value: '{colors.gray.50}' },
-      _dark: { value: '{colors.whiteAlpha.100}' },
+      _dark: { value: '{colors.customBlue.400}' },
     },
   },
   tabs: {
@@ -240,7 +240,7 @@ const colors = {
     '800': { value: '#702459' },
     '900': { value: '#521B41' },
   },
-  black: { value: '#101112' },
+  black: { value: '#0B1838' },
   white: { value: '#ffffff' },
   whiteAlpha: {
     '50': { value: 'RGBA(255, 255, 255, 0.04)' },
@@ -265,6 +265,24 @@ const colors = {
     '700': { value: 'RGBA(16, 17, 18, 0.64)' },
     '800': { value: 'RGBA(16, 17, 18, 0.80)' },
     '900': { value: 'RGBA(16, 17, 18, 0.92)' },
+  },
+
+  customBlue: {
+    '50': { value: '#263966' },
+    '100': { value: '#418DFF' },
+    '200': { value: '#0B1838' },
+    '300': { value: '#3757A2' },
+    '400': { value: '#1C2B4F' },
+  },
+  customYellow: {
+    '400': { value: '#FFBF00' },
+  },
+  customGray: {
+    '900': { value: '#030624' },
+  },
+  customBlueAlpha: {
+    '300': 'rgba(68, 118, 255, 0.15)',
+    '400': 'rgba(11, 24, 56, 0.7)',
   },
 
   // BRAND COLORS

@@ -35,7 +35,12 @@ const LatestTransactions = () => {
   if (data) {
     const txsUrl = route({ pathname: `/txs`, query: zetachainFeature.isEnabled ? { tab: 'evm' } : undefined });
     return (
-      <>
+      <Box bg={ !isPlaceholderData ? { _light: '', _dark: 'customBlue.200' } : '' }
+        borderWidth={{ _light: 0, _dark: '1px' }}
+        // borderTopWidth="0"
+        borderColor={ !isPlaceholderData ? 'border.divider' : '' }
+        borderRadius="12px"
+      >
         <SocketNewItemsNotice borderBottomRadius={ 0 } url={ txsUrl } num={ num } showErrorAlert={ showErrorAlert } isLoading={ isPlaceholderData }/>
         <Box mb={ 3 } display={{ base: 'block', lg: 'none' }}>
           { data.slice(0, txsCount).map(((tx, index) => (
@@ -60,7 +65,7 @@ const LatestTransactions = () => {
         <Flex justifyContent="center">
           <Link textStyle="sm" href={ txsUrl }>View all transactions</Link>
         </Flex>
-      </>
+      </Box>
     );
   }
 

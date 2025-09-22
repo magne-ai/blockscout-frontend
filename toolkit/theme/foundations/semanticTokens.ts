@@ -48,7 +48,7 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
       primary: { value: { _light: '{colors.theme.bg.primary._light}', _dark: '{colors.theme.bg.primary._dark}' } },
     },
     border: {
-      divider: { value: { _light: '{colors.blackAlpha.100}', _dark: '{colors.whiteAlpha.100}' } },
+      divider: { value: { _light: '{colors.blackAlpha.100}', _dark: '{colors.customBlue.50}' } },
       error: { value: '{colors.red.500}' },
     },
     icon: {
@@ -206,7 +206,7 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
     },
     popover: {
       DEFAULT: {
-        bg: { value: { _light: '{colors.white}', _dark: '{colors.gray.900}' } },
+        bg: { value: { _light: '{colors.white}', _dark: '{colors.customBlueAlpha.400}' } },
         shadow: { value: { _light: '{colors.blackAlpha.200}', _dark: '{colors.whiteAlpha.300}' } },
       },
     },
@@ -407,8 +407,8 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
     },
     table: {
       header: {
-        bg: { value: { _light: '{colors.blackAlpha.100}', _dark: '{colors.whiteAlpha.200}' } },
-        fg: { value: { _light: '{colors.blackAlpha.700}', _dark: '{colors.whiteAlpha.700}' } },
+        bg: { value: { _light: '{colors.blackAlpha.100}', _dark: '{colors.customGray.900}' } },
+        fg: { value: { _light: '{colors.blackAlpha.700}', _dark: '{colors.white}' } },
       },
     },
     checkbox: {

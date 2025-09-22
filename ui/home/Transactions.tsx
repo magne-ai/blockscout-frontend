@@ -45,7 +45,7 @@ const TransactionsHome = () => {
 
   return (
     <>
-      <Heading level="3" mb={ 3 }>Latest transactions</Heading>
+      <Heading level="3" mb={ 3 } color={{ _dark: 'customYellow.400' }}>Latest transactions</Heading>
       <LatestTxs/>
     </>
   );

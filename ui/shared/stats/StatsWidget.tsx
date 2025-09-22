@@ -75,12 +75,13 @@ const StatsWidget = ({
             borderRadius="base"
             display={{ base: 'none', lg: 'block' }}
             flexShrink={ 0 }
+            color={{ _dark: 'customYellow.400' }}
           />
         ) }
         <Box w={{ base: '100%', lg: icon ? 'calc(100% - 48px)' : '100%' }}>
           <Skeleton
             loading={ isLoading }
-            color="text.secondary"
+            color={{ _dark: 'customYellow.400' }}
             textStyle="xs"
             w="fit-content"
           >

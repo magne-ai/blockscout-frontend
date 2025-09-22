@@ -28,6 +28,7 @@ const LatestBlocksItem = ({ block, isLoading, animation }: Props) => {
       borderRadius="md"
       border="1px solid"
       borderColor="border.divider"
+      bg={ !isLoading ? { _light: '', _dark: 'customBlue.200' } : '' }
       p={ 3 }
     >
       <Flex alignItems="center" overflow="hidden" w="100%" mb={ 3 }>

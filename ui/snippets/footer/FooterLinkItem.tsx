@@ -58,7 +58,7 @@ const FooterLinkItem = ({ icon, iconSize, iconUrl, text, url, isLoading }: Props
   })();
 
   return (
-    <Link href={ url } display="flex" alignItems="center" h="30px" variant="subtle" target="_blank" textStyle="xs" columnGap={ 2 }>
+    <Link href={ url } display="flex" alignItems="center" h="30px" variant="subtle" target="_blank" textStyle="xs" columnGap={ 2 } color={{ _dark: 'white' }}>
       { iconElement }
       { text }
     </Link>

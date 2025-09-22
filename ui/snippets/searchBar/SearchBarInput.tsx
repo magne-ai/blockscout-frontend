@@ -169,10 +169,11 @@ const SearchBarInput = (
           onFocus={ onFocus }
           borderWidth={ isHomepage ? borderWidthHomepage : '2px' }
           borderStyle="solid"
-          borderColor={{ _light: 'blackAlpha.100', _dark: 'whiteAlpha.200' }}
-          color={{ _light: 'black', _dark: 'white' }}
+          borderColor={{ _light: 'blackAlpha.100', _dark: (isHomepage ? 'whiteAlpha.200' : 'customBlue.300') + ' !important' }}
+          color={{ _light: 'black', _dark: isHomepage ? 'customBlue.50' : 'customYellow.400' }}
           _hover={{ borderColor: 'input.border.hover' }}
           _focusWithin={{ _placeholder: { color: 'gray.300' }, borderColor: 'input.border.focus', _hover: { borderColor: 'input.border.focus' } }}
+          bgColor={{ _dark: isHomepage ? 'white' : 'customGray.900' }}
         />
       </InputGroup>
     </chakra.form>

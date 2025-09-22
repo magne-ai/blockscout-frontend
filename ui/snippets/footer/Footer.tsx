@@ -190,6 +190,7 @@ const Footer = () => {
         <Grid { ...contentProps }>
           <div>
             { renderNetworkInfo() }
+            { renderProjectInfo() }
             { renderRecaptcha() }
           </div>
 
@@ -237,6 +238,7 @@ const Footer = () => {
       >
 
         { renderNetworkInfo({ lg: 'network' }) }
+        { renderProjectInfo({ lg: 'info' }) }
         { renderRecaptcha({ lg: 'recaptcha' }) }
 
         <Grid
@@ -257,6 +259,7 @@ const Footer = () => {
           justifyContent={{ lg: 'flex-end' }}
           mt={{ base: 8, lg: 0 }}
         >
+          { BLOCKSCOUT_LINKS.map(link => <FooterLinkItem { ...link } key={ link.text }/>) }
         </Grid>
       </Grid>
     </Box>

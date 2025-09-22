@@ -1,11 +1,11 @@
 import { Text, chakra } from '@chakra-ui/react';
 import React from 'react';
 
+import config from 'configs/app';
 import { Alert } from 'toolkit/chakra/alert';
 import { Link } from 'toolkit/chakra/link';
 import { Skeleton } from 'toolkit/chakra/skeleton';
 import { TableCell, TableRow } from 'toolkit/chakra/table';
-
 interface InjectedProps {
   content: React.ReactNode;
 }
@@ -20,6 +20,8 @@ interface Props {
   isLoading?: boolean;
   onLinkClick?: () => void;
 }
+
+const BACKGROUND_DEFAULT = 'linear-gradient(90deg,#FFBF00 0%,#851B85 100%)';
 
 const SocketNewItemsNotice = chakra(({ children, className, url, num, showErrorAlert, type = 'transaction', isLoading, onLinkClick }: Props) => {
   const handleLinkClick = React.useCallback(() => {
@@ -79,6 +81,8 @@ const SocketNewItemsNotice = chakra(({ children, className, url, num, showErrorA
       px={ 4 }
       py="6px"
       fontSize="sm"
+      bgImage={ config.UI.homepage.plate.background || BACKGROUND_DEFAULT }
+      color={{ _light: 'white', _dark: 'black' }}
     >
       { alertContent }
     </Alert>

@@ -12,6 +12,11 @@ export const recipe = defineSlotRecipe({
       textAlign: 'start',
       verticalAlign: 'top',
       overflow: 'unset',
+      // border:"1px solid",
+      // borderColor:'border.divider',
+      outline: '1px solid',
+      outlineColor: 'border.divider',
+      borderTopRadius: '8px',
     },
     cell: {
       textAlign: 'start',
