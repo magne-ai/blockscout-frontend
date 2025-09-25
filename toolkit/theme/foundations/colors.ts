@@ -281,8 +281,8 @@ const colors = {
     '900': { value: '#030624' },
   },
   customBlueAlpha: {
-    '300': 'rgba(68, 118, 255, 0.15)',
-    '400': 'rgba(11, 24, 56, 0.7)',
+    '300': { value: 'rgba(68, 118, 255, 0.15)' },
+    '400': { value: 'rgba(11, 24, 56, 0.7)' },
   },
 
   // BRAND COLORS
