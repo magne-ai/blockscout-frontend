@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import React from 'react';
 
 import { IconButton } from 'toolkit/chakra/icon-button';
@@ -8,7 +8,7 @@ import { useDisclosure } from 'toolkit/hooks/useDisclosure';
 import IconSvg from 'ui/shared/IconSvg';
 
 import SettingsAddressFormat from './SettingsAddressFormat';
-import SettingsColorTheme from './SettingsColorTheme';
+// import SettingsColorTheme from './SettingsColorTheme';
 import SettingsIdentIcon from './SettingsIdentIcon';
 import SettingsScamTokens from './SettingsScamTokens';
 
@@ -51,8 +51,8 @@ const Settings = () => {
       </Tooltip>
       <PopoverContent overflowY="hidden" w="auto" fontSize="sm">
         <PopoverBody>
-          <SettingsColorTheme onSelect={ popover.onClose }/>
-          <Box borderColor="border.divider" borderTopWidth="1px" my={ 3 }/>
+          { /* <SettingsColorTheme onSelect={ popover.onClose }/> */ }
+          { /* <Box borderColor="border.divider" borderTopWidth="1px" my={ 3 }/> */ }
           <SettingsIdentIcon/>
           <SettingsAddressFormat/>
           <SettingsScamTokens/>

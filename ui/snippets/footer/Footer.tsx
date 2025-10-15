@@ -9,7 +9,7 @@ import config from 'configs/app';
 import type { ResourceError } from 'lib/api/resources';
 import useApiQuery from 'lib/api/useApiQuery';
 import useFetch from 'lib/hooks/useFetch';
-import useIssueUrl from 'lib/hooks/useIssueUrl';
+// import useIssueUrl from 'lib/hooks/useIssueUrl';
 import { Link } from 'toolkit/chakra/link';
 import { Skeleton } from 'toolkit/chakra/skeleton';
 import { copy } from 'toolkit/utils/htmlEntities';
@@ -35,45 +35,51 @@ const Footer = () => {
     },
   });
   const apiVersionUrl = getApiVersionUrl(backendVersionData?.backend_version);
-  const issueUrl = useIssueUrl(backendVersionData?.backend_version);
+  // const issueUrl = useIssueUrl(backendVersionData?.backend_version);
 
   const BLOCKSCOUT_LINKS = [
-    {
-      icon: 'edit' as const,
-      iconSize: '16px',
-      text: 'Submit an issue',
-      url: issueUrl,
-    },
-    {
-      icon: 'social/git' as const,
-      iconSize: '18px',
-      text: 'Contribute',
-      url: 'https://github.com/blockscout/blockscout',
-    },
+    // {
+    //   icon: 'edit' as const,
+    //   iconSize: '16px',
+    //   text: 'Submit an issue',
+    //   url: issueUrl,
+    // },
     {
       icon: 'social/twitter' as const,
       iconSize: '18px',
-      text: 'X (ex-Twitter)',
-      url: 'https://x.com/blockscout',
+      text: 'X',
+      url: 'https://x.com/magne_ai',
     },
     {
-      icon: 'social/discord' as const,
-      iconSize: '24px',
-      text: 'Discord',
-      url: 'https://discord.gg/blockscout',
-    },
-    {
-      icon: 'brands/blockscout' as const,
+      icon: 'social/telega' as const,
       iconSize: '18px',
-      text: 'All chains',
-      url: 'https://www.blockscout.com/chains-and-projects',
+      text: 'Telegram',
+      url: 'https://t.me/MagneAI',
     },
-    {
-      icon: 'donate' as const,
-      iconSize: '20px',
-      text: 'Donate',
-      url: 'https://eth.blockscout.com/address/0xfB4aF6A8592041E9BcE186E5aC4BDbd2B137aD11',
-    },
+    // {
+    //   icon: 'social/git' as const,
+    //   iconSize: '18px',
+    //   text: 'Contribute',
+    //   url: 'https://github.com/magne-ai/blockscout-frontend',
+    // },
+    // {
+    //   icon: 'social/discord' as const,
+    //   iconSize: '24px',
+    //   text: 'Discord',
+    //   url: 'https://discord.gg/blockscout',
+    // },
+    // {
+    //   icon: 'brands/blockscout' as const,
+    //   iconSize: '18px',
+    //   text: 'All chains',
+    //   url: 'https://www.blockscout.com/chains-and-projects',
+    // },
+    // {
+    //   icon: 'donate' as const,
+    //   iconSize: '20px',
+    //   text: 'Donate',
+    //   url: 'https://eth.blockscout.com/address/0xfB4aF6A8592041E9BcE186E5aC4BDbd2B137aD11',
+    // },
   ];
 
   const frontendLink = (() => {
@@ -99,7 +105,6 @@ const Footer = () => {
   });
 
   const colNum = isPlaceholderData ? 1 : Math.min(linksData?.length || Infinity, MAX_LINKS_COLUMNS) + 1;
-
   const renderNetworkInfo = React.useCallback((gridArea?: GridProps['gridArea']) => {
     return (
       <Flex
@@ -247,15 +252,15 @@ const Footer = () => {
           gridTemplateColumns={{
             base: 'repeat(auto-fill, 160px)',
             lg: 'repeat(2, 160px)',
-            xl: 'repeat(3, 160px)',
+            xl: 'repeat(2, 160px)',
           }}
           gridTemplateRows={{
             base: 'auto',
             lg: 'repeat(3, auto)',
-            xl: 'repeat(2, auto)',
+            xl: 'repeat(1, auto)',
           }}
           gridAutoFlow={{ base: 'row', lg: 'column' }}
-          alignContent="start"
+          alignContent="end"
           justifyContent={{ lg: 'flex-end' }}
           mt={{ base: 8, lg: 0 }}
         >

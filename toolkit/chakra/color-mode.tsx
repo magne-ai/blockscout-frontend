@@ -15,7 +15,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
     <ThemeProvider
       attribute="class"
       scriptProps={{ 'data-cfasync': 'false' }}
-      defaultTheme={ config.UI.colorTheme.default?.colorMode }
+      forcedTheme={ config.UI.colorTheme.default?.colorMode }
       disableTransitionOnChange
       { ...props }
     />
