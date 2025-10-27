@@ -7,11 +7,17 @@ const EthRpcApi = () => {
   return (
     <Box>
       <Text>
-        In addition to the custom RPC endpoints documented here,
-        the Blockscout ETH RPC API supports 3 methods in the exact format specified for Ethereum nodes,
-        ee the Ethereum JSON-RPC Specification for more details.
+        In addition to the custom RPC endpoints documented here, ETH RPC API
+        supports 3 methods in the exact format specified for Ethereum nodes, ee
+        the Ethereum JSON-RPC Specification for more details.
       </Text>
-      <Link href="https://docs.blockscout.com/for-users/api/eth-rpc" external mt={ 6 }>View examples</Link>
+      <Link
+        href="https://docs.blockscout.com/for-users/api/eth-rpc"
+        external
+        mt={ 6 }
+      >
+        View examples
+      </Link>
     </Box>
   );
 };

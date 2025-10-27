@@ -7,10 +7,17 @@ const RpcApi = () => {
   return (
     <Box>
       <Text>
-        This API is provided for developers transitioning applications from Etherscan to BlockScout and applications requiring general API and data support.
-        It supports GET and POST requests.
+        This API is provided for developers transitioning applications from
+        Etherscan to applications requiring general API and data support. It
+        supports GET and POST requests.
       </Text>
-      <Link href="https://docs.blockscout.com/for-users/api/rpc-endpoints" external mt={ 6 }>View modules</Link>
+      <Link
+        href="https://docs.blockscout.com/for-users/api/rpc-endpoints"
+        external
+        mt={ 6 }
+      >
+        View modules
+      </Link>
     </Box>
   );
 };
